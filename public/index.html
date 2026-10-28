@@ -1,124 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NM PDF - PDF Tools</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #101010;
-      color: #f5f5f5;
-      text-align: center;
-    }
-    header {
-      padding: 24px 15px;
-      border-bottom: 1px solid #c9a227;
-    }
-    h1 { color: #d4af37; margin: 0; }
-    .container {
-      max-width: 650px;
-      margin: 55px auto;
-      padding: 25px;
-    }
-    .card {
-      background: #1c1c1c;
-      border: 1px solid #c9a227;
-      border-radius: 14px;
-      padding: 28px 20px;
-    }
-    h2 { color: #d4af37; }
-    p { color: #ccc; line-height: 1.6; }
-    input[type="file"] {
-      width: 100%;
-      margin: 20px 0;
-      padding: 12px;
-      background: #292929;
-      color: white;
-      border-radius: 6px;
-    }
-    button {
-      background: #d4af37;
-      color: #111;
-      border: 0;
-      padding: 13px 25px;
-      border-radius: 7px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:disabled { opacity: .6; }
-    #status { margin-top: 18px; }
-    footer { color: #888; padding: 25px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NM PDF — Online PDF Tools</title>
+<style>
+:root{--gold:#d4af37;--bg:#101010;--panel:#1b1b1b;--muted:#bdbdbd}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f7f7f7;font-family:Arial,sans-serif}
+header{padding:22px 16px;border-bottom:1px solid #4a3b12;text-align:center;background:#111}
+.logo{font-size:30px;font-weight:800;letter-spacing:1px;color:var(--gold);margin:0}
+header p{margin:8px 0 0;color:#cfcfcf}
+main{max-width:1050px;margin:28px auto;padding:0 16px}
+.intro{text-align:center;margin:20px auto 30px}.intro h1{font-size:clamp(26px,5vw,38px);margin:0 0 10px}.intro span{color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid #5d4b19;border-radius:14px;padding:20px;box-shadow:0 8px 24px #0005}
+.card h2{font-size:19px;margin:0 0 8px;color:var(--gold)}.card p{min-height:40px;color:var(--muted);line-height:1.45;font-size:14px}
+input[type=file],select{display:block;width:100%;padding:11px;margin:14px 0;background:#292929;color:#fff;border:1px solid #555;border-radius:7px}
+button{width:100%;padding:12px;border:0;border-radius:7px;background:var(--gold);color:#171717;font-weight:700;font-size:15px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}.status{font-size:13px!important;min-height:18px!important;margin-bottom:0}
+.note{font-size:12px;color:#999;text-align:center;line-height:1.6;margin:24px 0}
+footer{text-align:center;border-top:1px solid #333;padding:22px;color:#888;font-size:13px}
+</style>
 </head>
 <body>
-  <header>
-    <h1>NM PDF</h1>
-    <p>Simple PDF Tools</p>
-  </header>
-
-  <main class="container">
-    <div class="card">
-      <h2>PDF to Excel</h2>
-      <p>Apni PDF file select karein aur Excel file mein convert karein.</p>
-
-      <form id="convertForm">
-        <input type="file" id="pdfFile" name="pdf"
-               accept=".pdf,application/pdf" required>
-        <button type="submit" id="convertBtn">Convert to Excel</button>
-      </form>
-
-      <p id="status"></p>
-    </div>
-  </main>
-
-  <footer>© 2026 NM PDF</footer>
-
-  <script>
-    document.getElementById("convertForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-
-      const file = document.getElementById("pdfFile").files[0];
-      const status = document.getElementById("status");
-      const button = document.getElementById("convertBtn");
-
-      if (!file) {
-        status.textContent = "Please select a PDF file.";
-        return;
-      }
-
-      const data = new FormData();
-      data.append("pdf", file);
-      button.disabled = true;
-      status.textContent = "Converting... Please wait.";
-
-      try {
-        const response = await fetch("/api/pdf-to-excel", {
-          method: "POST",
-          body: data
-        });
-
-        if (!response.ok) {
-          const error = await response.json();
-          throw new Error(error.error || "Conversion failed.");
-        }
-
-        const blob = await response.blob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = file.name.replace(/\.pdf$/i, "") + ".xlsx";
-        a.click();
-        URL.revokeObjectURL(url);
-        status.textContent = "Conversion successful!";
-      } catch (error) {
-        status.textContent = "Error: " + error.message;
-      } finally {
-        button.disabled = false;
-      }
-    });
-  </script>
+<header><p class="logo">NM PDF</p><p>Simple • Fast • Online PDF Tools</p></header>
+<main>
+  <section class="intro"><h1>All your <span>PDF tools</span> in one place</h1><p>Choose a tool, upload your file, and download the result.</p></section>
+  <section class="grid">
+    <div class="card"><h2>PDF to Excel</h2><p>Extract selectable text from a PDF into an Excel worksheet.</p><form data-endpoint="/api/pdf-to-excel" data-field="pdf" data-name="pdf"><input type="file" name="pdf" accept=".pdf,application/pdf" required><button>Convert to Excel</button><p class="status"></p></form></div>
+    <div class="card"><h2>PDF to Word</h2><p>Convert selectable PDF text into an editable Word document.</p><form data-endpoint="/api/pdf-to-word" data-field="pdf" data-name="word"><input type="file" name="pdf" accept=".pdf,application/pdf" required><button>Convert to Word</button><p class="status"></p></form></div>
+    <div class="card"><h2>Merge PDF</h2><p>Combine two or more PDF files into one document.</p><form data-endpoint="/api/merge-pdf" data-field="pdfs" data-name="merged"><input type="file" name="pdfs" accept=".pdf,application/pdf" multiple required><button>Merge PDFs</button><p class="status"></p></form></div>
+    <div class="card"><h2>Split PDF</h2><p>Split a PDF into individual pages and download them in a ZIP.</p><form data-endpoint="/api/split-pdf" data-field="pdf" data-name="pages"><input type="file" name="pdf" accept=".pdf,application/pdf" required><button>Split PDF</button><p class="status"></p></form></div>
+    <div class="card"><h2>Excel to PDF</h2><p>Export the first worksheet's cell values into a readable PDF table.</p><form data-endpoint="/api/excel-to-pdf" data-field="excel" data-name="excel-pdf"><input type="file" name="excel" accept=".xlsx,.xls,.csv" required><button>Convert to PDF</button><p class="status"></p></form></div>
+    <div class="card"><h2>Rotate PDF</h2><p>Rotate every page in your PDF by 90, 180, or 270 degrees.</p><form data-endpoint="/api/rotate-pdf" data-field="pdf" data-name="rotated"><input type="file" name="pdf" accept=".pdf,application/pdf" required><select name="angle"><option value="90">Rotate 90°</option><option value="180">Rotate 180°</option><option value="270">Rotate 270°</option></select><button>Rotate PDF</button><p class="status"></p></form></div>
+  </section>
+  <p class="note">Maximum upload size: 20 MB per file. Scanned PDFs need OCR, which is not included. Excel to PDF exports worksheet values and does not preserve the exact Microsoft Excel print layout.</p>
+</main>
+<footer>© 2026 NM PDF. Your files are processed for conversion and are not intentionally stored by this app.</footer>
+<script>
+document.querySelectorAll("form[data-endpoint]").forEach(form=>{
+  form.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const status=form.querySelector(".status"),button=form.querySelector("button"),input=form.querySelector('input[type="file"]');
+    if(!input.files.length){status.textContent="Please select a file first.";return;}
+    if(form.dataset.field==="pdfs" && input.files.length<2){status.textContent="Please select at least two PDFs.";return;}
+    const data=new FormData(form);button.disabled=true;status.textContent="Working… please wait.";
+    try{
+      const response=await fetch(form.dataset.endpoint,{method:"POST",body:data});
+      if(!response.ok){let message="Conversion failed.";try{message=(await response.json()).error||message;}catch(_){}throw new Error(message);}
+      const blob=await response.blob(),url=URL.createObjectURL(blob),a=document.createElement("a");
+      const file=input.files[0],base=file.name.replace(/\.[^.]+$/,"").replace(/[^\w-]+/g,"_")||"converted";
+      let ext="pdf";
+      if(form.dataset.endpoint==="/api/pdf-to-excel")ext="xlsx";
+      if(form.dataset.endpoint==="/api/pdf-to-word")ext="docx";
+      if(form.dataset.endpoint==="/api/split-pdf")ext="zip";
+      if(form.dataset.endpoint==="/api/merge-pdf")a.download="nm-pdf-merged.pdf";
+      else if(form.dataset.endpoint==="/api/rotate-pdf")a.download=base+"-rotated.pdf";
+      else if(form.dataset.endpoint==="/api/excel-to-pdf")a.download=base+".pdf";
+      else a.download=base+"."+ext;
+      a.href=url;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+      status.textContent="Done! Your download should start now.";
+    }catch(err){status.textContent="Error: "+err.message;}
+    finally{button.disabled=false;}
+  });
+});
+</script>
 </body>
 </html>
