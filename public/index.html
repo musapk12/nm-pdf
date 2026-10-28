@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NM PDF — Professional PDF Tools</title>
-<meta name="description" content="NM PDF — Your online workspace for PDF and document tools.">
+<title>NM PDF | Professional PDF Tools</title>
+<meta name="description" content="NM PDF - Convert, merge, split and manage your PDF documents online.">
 
 <style>
 :root {
   --bg: #090909;
-  --panel: #141414;
+  --card: #141414;
   --gold: #d8ad55;
   --gold-light: #f5d990;
   --text: #f7f5ef;
   --muted: #a6a6a6;
-  --border: rgba(216,173,85,.22);
+  --border: rgba(216,173,85,.25);
 }
 
 * {
@@ -24,7 +24,9 @@
   padding: 0;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--bg);
@@ -33,11 +35,13 @@ body {
   line-height: 1.6;
 }
 
-button, input { font: inherit; }
-
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
+}
+
+button, input, select {
+  font: inherit;
 }
 
 .container {
@@ -45,74 +49,85 @@ a {
   margin: auto;
 }
 
+/* NAVIGATION */
+
 header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: rgba(9,9,9,.94);
-  backdrop-filter: blur(14px);
+  z-index: 100;
+  background: rgba(9,9,9,.96);
   border-bottom: 1px solid var(--border);
 }
 
 .nav {
-  min-height: 76px;
+  min-height: 72px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 15px;
 }
 
 .logo {
-  font-size: 25px;
+  font-size: 27px;
   font-weight: 900;
   letter-spacing: -1px;
 }
 
-.logo span { color: var(--gold); }
+.logo .nm {
+  color: var(--gold);
+}
+
+.logo .dot {
+  color: var(--gold);
+}
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 24px;
   font-size: 14px;
-  color: #d1d1d1;
 }
 
-.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover {
+  color: var(--gold);
+}
 
 .nav-button {
-  padding: 10px 17px;
   background: var(--gold);
-  color: #111;
+  color: #111 !important;
+  padding: 10px 16px;
   border-radius: 7px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
+/* HERO SECTION */
+
 .hero {
-  padding: 95px 0 75px;
   text-align: center;
+  padding: 90px 0 70px;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(216,173,85,.13), transparent 58%);
+    radial-gradient(ellipse at 50% 0%,
+    rgba(216,173,85,.15), transparent 65%);
 }
 
 .badge {
   display: inline-block;
-  border: 1px solid var(--border);
-  background: rgba(216,173,85,.07);
-  color: var(--gold-light);
-  border-radius: 30px;
   padding: 7px 15px;
+  margin-bottom: 23px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  color: var(--gold-light);
+  background: rgba(216,173,85,.06);
   font-size: 12px;
   letter-spacing: 1.5px;
-  margin-bottom: 24px;
 }
 
 .hero h1 {
-  font-size: clamp(38px, 7vw, 70px);
-  line-height: 1.08;
-  letter-spacing: -2px;
   max-width: 850px;
   margin: 0 auto 22px;
+  font-size: clamp(38px, 7vw, 70px);
+  line-height: 1.12;
+  letter-spacing: -2px;
 }
 
 .hero h1 span {
@@ -120,8 +135,8 @@ header {
 }
 
 .hero p {
-  max-width: 590px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: auto;
   color: var(--muted);
   font-size: 17px;
 }
@@ -131,45 +146,42 @@ header {
   justify-content: center;
   flex-wrap: wrap;
   gap: 13px;
-  margin-top: 32px;
+  margin-top: 30px;
 }
 
 .btn {
   display: inline-block;
-  border: 1px solid var(--gold);
+  padding: 13px 22px;
   border-radius: 8px;
-  padding: 13px 23px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: .2s ease;
+  font-weight: bold;
+  border: 1px solid var(--gold);
+  transition: .2s;
 }
 
-.btn-gold {
+.btn-primary {
   background: var(--gold);
   color: #111;
 }
 
-.btn-outline {
+.btn-secondary {
   color: var(--gold-light);
-  background: transparent;
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(216,173,85,.15);
 }
 
 .trust {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
-  margin-top: 34px;
-  color: #bdbdbd;
+  gap: 22px;
+  color: #c2c2c2;
   font-size: 13px;
 }
 
-.trust span::first-letter { color: var(--gold); }
+/* SECTION HEADING */
 
 .section {
   padding: 65px 0 85px;
@@ -183,20 +195,23 @@ header {
 .eyebrow {
   color: var(--gold);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .section-heading h2 {
-  font-size: clamp(28px, 4vw, 42px);
   margin: 10px 0;
-  letter-spacing: -1px;
+  font-size: clamp(29px, 4vw, 43px);
+  line-height: 1.2;
 }
 
 .section-heading p {
   color: var(--muted);
+  font-size: 14px;
 }
+
+/* TOOLS */
 
 .tools-grid {
   display: grid;
@@ -205,47 +220,528 @@ header {
 }
 
 .tool-card {
+  min-width: 0;
+  padding: 25px;
   background: linear-gradient(145deg, #181818, #101010);
   border: 1px solid #292929;
   border-radius: 15px;
-  padding: 25px;
-  transition: .25s ease;
-  min-width: 0;
+  transition: .25s;
 }
 
 .tool-card:hover {
   border-color: var(--gold);
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0,0,0,.25);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
 }
 
 .tool-icon {
-  display: grid;
-  place-items: center;
   width: 52px;
   height: 52px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
   border-radius: 12px;
   background: rgba(216,173,85,.1);
   border: 1px solid var(--border);
   color: var(--gold);
   font-size: 25px;
-  margin-bottom: 20px;
 }
 
 .tool-card h3 {
-  font-size: 19px;
   margin-bottom: 8px;
+  font-size: 20px;
 }
 
 .tool-card p {
+  min-height: 44px;
+  margin-bottom: 20px;
   color: var(--muted);
   font-size: 13px;
-  min-height: 42px;
-  margin-bottom: 21px;
 }
 
 .tool-card form {
-  display
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.file-input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+  background: #0b0b0b;
+  border: 1px solid #353535;
+  border-radius: 7px;
+  color: #ccc;
+  font-size: 12px;
+}
+
+.file-input::file-selector-button {
+  padding: 7px 9px;
+  margin-right: 7px;
+  background: #292929;
+  border: 0;
+  border-radius: 5px;
+  color: var(--gold-light);
+  cursor: pointer;
+}
+
+.tool-button {
+  width: 100%;
+  padding: 12px;
+  background: var(--gold);
+  color: #111;
+  border: 0;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.tool-button:hover {
+  background: var(--gold-light);
+}
+
+.tool-button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.angle-select {
+  width: 100%;
+  padding: 11px;
+  background: #0b0b0b;
+  border: 1px solid #353535;
+  border-radius: 7px;
+  color: white;
+}
+
+.status {
+  display: none;
+  color: var(--gold-light);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* FEATURES */
+
+.features {
+  padding: 65px 0;
+  background: #0e0e0e;
+  border-top: 1px solid #242424;
+  border-bottom: 1px solid #242424;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature {
+  padding: 20px;
+  text-align: center;
+}
+
+.feature strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 17px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer .logo {
+  margin-bottom: 8px;
+}
+
+/* MOBILE DESIGN */
+
+@media (max-width: 850px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .nav {
+    min-height: 65px;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .nav-links {
+    gap: 11px;
+    font-size: 12px;
+  }
+
+  .nav-button {
+    padding: 8px 10px;
+  }
+
+  .hero {
+    padding: 65px 0 50px;
+  }
+
+  .hero h1 {
+    letter-spacing: -1px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .trust {
+    gap: 10px 17px;
+  }
+
+  .tools-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .tool-card {
+    padding: 21px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a href="#" class="logo">
+      <span class="nm">NM</span> PDF<span class="dot">.</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#tools">PDF Tools</a>
+      <a href="#features">Features</a>
+      <a href="#tools" class="nav-button">Get Started ↗</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container">
+
+    <div class="badge">YOUR DOCUMENT WORKSPACE</div>
+
+    <h1>
+      Make your files work
+      <span>smarter.</span>
+    </h1>
+
+    <p>
+      Convert, organize and manage your documents with NM PDF.
+      Simple tools and a clean experience, all in one place.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#tools" class="btn btn-primary">
+        Explore PDF Tools →
+      </a>
+
+      <a href="#features" class="btn btn-secondary">
+        Discover NM PDF
+      </a>
+    </div>
+
+    <div class="trust">
+      <span>✦ Easy to use</span>
+      <span>✦ Six document tools</span>
+      <span>✦ Mobile friendly</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">NM PDF Toolkit</div>
+      <h2>Everything you need.</h2>
+      <p>Choose a tool, select your file and get started.</p>
+    </div>
+
+    <div class="tools-grid">
+
+      <!-- PDF TO EXCEL -->
+      <article class="tool-card">
+        <div class="tool-icon">▦</div>
+        <h3>PDF to Excel</h3>
+        <p>Convert PDF documents into Excel spreadsheets.</p>
+
+        <form action="/api/pdf-to-excel"
+              method="post"
+              enctype="multipart/form-data">
+
+          <input class="file-input"
+                 type="file"
+                 name="pdf"
+                 accept=".pdf,application/pdf"
+                 required>
+
+          <button class="tool-button" type="submit">
+            Convert to Excel →
+          </button>
+
+          <div class="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <!-- PDF TO WORD -->
+      <article class="tool-card">
+        <div class="tool-icon">▤</div>
+        <h3>PDF to Word</h3>
+        <p>Convert PDF documents into Word files.</p>
+
+        <form action="/api/pdf-to-word"
+              method="post"
+              enctype="multipart/form-data">
+
+          <input class="file-input"
+                 type="file"
+                 name="pdf"
+                 accept=".pdf,application/pdf"
+                 required>
+
+          <button class="tool-button" type="submit">
+            Convert to Word →
+          </button>
+
+          <div class="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <!-- MERGE PDF -->
+      <article class="tool-card">
+        <div class="tool-icon">⇄</div>
+        <h3>Merge PDF</h3>
+        <p>Combine two or more PDF files into one document.</p>
+
+        <form action="/api/merge-pdf"
+              method="post"
+              enctype="multipart/form-data">
+
+          <input class="file-input"
+                 type="file"
+                 name="pdfs"
+                 accept=".pdf,application/pdf"
+                 multiple
+                 required>
+
+          <button class="tool-button" type="submit">
+            Merge PDFs →
+          </button>
+
+          <div class="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <!-- SPLIT PDF -->
+      <article class="tool-card">
+        <div class="tool-icon">✂</div>
+        <h3>Split PDF</h3>
+        <p>Separate a PDF into individual page files.</p>
+
+        <form action="/api/split-pdf"
+              method="post"
+              enctype="multipart/form-data">
+
+          <input class="file-input"
+                 type="file"
+                 name="pdf"
+                 accept=".pdf,application/pdf"
+                 required>
+
+          <button class="tool-button" type="submit">
+            Split PDF →
+          </button>
+
+          <div class="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <!-- EXCEL TO PDF -->
+      <article class="tool-card">
+        <div class="tool-icon">▧</div>
+        <h3>Excel to PDF</h3>
+        <p>Convert Excel spreadsheets into PDF documents.</p>
+
+        <form action="/api/excel-to-pdf"
+              method="post"
+              enctype="multipart/form-data">
+
+          <input class="file-input"
+                 type="file"
+                 name="excel"
+                 accept=".xls,.xlsx"
+                 required>
+
+          <button class="tool-button" type="submit">
+            Convert to PDF →
+          </button>
+
+          <div class="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <!-- ROTATE PDF -->
+      <article class="tool-card">
+        <div class="tool-icon">⟳</div>
+        <h3>Rotate PDF</h3>
+        <p>Rotate your PDF pages to the correct orientation.</p>
+
+        <form action="/api/rotate-pdf"
+              method="post"
+              enctype="multipart/form-data">
+
+          <input class="file-input"
+                 type="file"
+                 name="pdf"
+                 accept=".pdf,application/pdf"
+                 required>
+
+          <select class="angle-select" name="angle"
+                  aria-label="Rotation angle">
+            <option value="90">Rotate 90° clockwise</option>
+            <option value="180">Rotate 180°</option>
+            <option value="270">Rotate 270° clockwise</option>
+          </select>
+
+          <button class="tool-button" type="submit">
+            Rotate PDF →
+          </button>
+
+          <div class="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">Simple workflow</div>
+      <h2>Documents made easier.</h2>
+      <p>Three simple steps to process your documents.</p>
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature">
+        <strong>01 — Choose</strong>
+        <p>Select the document tool you need.</p>
+      </div>
+
+      <div class="feature">
+        <strong>02 — Upload</strong>
+        <p>Choose your file and start processing.</p>
+      </div>
+
+      <div class="feature">
+        <strong>03 — Download</strong>
+        <p>Download the processed file when ready.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="logo">
+      <span class="nm">NM</span> PDF<span class="dot">.</span>
+    </div>
+
+    <p>Your documents. Your workflow. Made simpler.</p>
+
+    <p style="margin-top:12px">
+      © <span id="year"></span> NM PDF. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+document.querySelectorAll(".tool-card form").forEach(function(form) {
+
+  const button = form.querySelector('button[type="submit"]');
+  const status = form.querySelector(".status");
+  const originalText = button.textContent.trim();
+
+  form.addEventListener("submit", function(event) {
+
+    const fileInput = form.querySelector('input[type="file"]');
+
+    if (!fileInput || fileInput.files.length === 0) {
+      event.preventDefault();
+      alert("Please select a file first.");
+      return;
+    }
+
+    if (
+      form.action.endsWith("/api/merge-pdf") &&
+      fileInput.files.length < 2
+    ) {
+      event.preventDefault();
+      alert("Please select at least two PDF files.");
+      return;
+    }
+
+    status.style.display = "block";
+    status.textContent = "Processing your file. Please wait...";
+
+    button.disabled = true;
+    button.textContent = "Processing...";
+
+    /*
+      Keep the original form submission.
+      Restore the button if the browser remains on this page.
+    */
+    setTimeout(function() {
+      button.disabled = false;
+      button.textContent = originalText;
+    }, 60000);
+
+  });
+
+});
 </script>
 
 </body>
