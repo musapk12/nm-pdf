@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
+<meta name="description" content="NM PDF - convert selectable PDF text to Excel.">
+<title>NM PDF — PDF to Excel</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="/"><span class="brand-mark">NM</span><span>NM <b>PDF</b><small>PDF TOOLS</small></span></a>
+<nav><a class="active" href="#converter">PDF to Excel</a><a href="#how-it-works">How it works</a></nav>
+</header>
+<main>
+<section class="hero">
+<div class="eyebrow"><span></span> SIMPLE • FAST • USEFUL</div>
+<h1>Your PDF.<br><em>Your spreadsheet.</em></h1>
+<p class="hero-copy">Turn selectable text from a PDF into an Excel file. Simple tools, a clean workflow, and no unnecessary clutter.</p>
+<a class="gold-button hero-button" href="#converter">Convert PDF <span>↘</span></a>
+<div class="hero-note"><span class="shield">✓</span> Files are processed temporarily by this starter server.</div>
+<div class="decor decor-one"></div><div class="decor decor-two"></div>
+</section>
+<section class="converter-section" id="converter">
+<div class="section-heading"><div><div class="eyebrow">TOOL 01</div><h2>PDF to Excel</h2></div><span class="format-pill">PDF <b>→</b> XLSX</span></div>
+<p class="section-copy">Upload a text-based PDF and download the extracted text as an Excel workbook.</p>
+<form id="convert-form">
+<label class="dropzone" id="dropzone" for="pdf-file">
+<input type="file" id="pdf-file" name="pdf" accept="application/pdf,.pdf" hidden>
+<span class="upload-icon">↑</span><strong id="file-title">Drop your PDF here</strong>
+<span id="file-subtitle">or click to browse files</span><span class="file-limit">PDF only · Maximum 20 MB</span>
+</label>
+<div id="file-info" class="file-info" hidden></div>
+<button class="gold-button convert-button" id="convert-button" type="submit">Convert to Excel <span>→</span></button>
+<p id="status" class="status" role="status" aria-live="polite"></p>
+</form>
+<div class="privacy-note"><span>✦</span><p><b>Quick note</b><br>This starter extracts selectable PDF text into rows. It does not yet reconstruct complex table layouts or read scanned PDFs that need OCR.</p></div>
+</section>
+<section class="steps" id="how-it-works">
+<div class="eyebrow">HOW IT WORKS</div><h2>Three simple steps.</h2>
+<div class="step-grid">
+<article><span>01</span><h3>Upload</h3><p>Select a PDF file from your device.</p></article>
+<article><span>02</span><h3>Convert</h3><p>NM PDF extracts selectable text and prepares a workbook.</p></article>
+<article><span>03</span><h3>Download</h3><p>Save the generated .xlsx file to your device.</p></article>
+</div></section></main>
+<footer><a class="brand footer-brand" href="/"><span class="brand-mark">NM</span><span>NM <b>PDF</b></span></a><span>© <span id="year"></span> NM PDF · Starter version</span></footer>
+<script src="/app.js"></script>
+</body></html>

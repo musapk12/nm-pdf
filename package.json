@@ -1,0 +1,13 @@
+{
+  "name": "nm-pdf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NM PDF - black and gold PDF tools website starter",
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^1.1.1",
+    "xlsx": "^0.18.5"
+  }
+}
